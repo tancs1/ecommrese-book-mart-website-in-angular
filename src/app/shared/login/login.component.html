@@ -31,7 +31,7 @@
            <i class="bi bi-exclamation-circle"></i> Password is required and must be at least 6 characters.
          </div>
          
-         <button type="submit" (click)="toggleContainer()"  [disabled]="SignUpForm.invalid" >Sign In </button>
+         <button type="submit" (click)="toggleContainer()"   >Sign Up </button>
    
                 <div class="d-flex justify-content-between w-100">
                     <a class="home bg-body-tertiary p-1" title="Sign"  (click)="toggleContainer()"> <i class="bi bi-arrow-left"></i></a>
@@ -65,7 +65,7 @@
          </div>
                 <a href="#">Forget Your Password?</a>
                
-                <button type="submit" [disabled]="SignUpForm.invalid"  >Sign In</button>
+                <button type="submit"   >Sign In</button>
               <div class="d-flex justify-content-between w-100">
                 <a routerLink="" class="home bg-body-tertiary p-1" title="back Home"  (click)="backHome()"> <i class="bi bi-arrow-left"></i></a>
                 <a class="home  bg-body-tertiary signup p-1  " title="Signup" (click)="toggleContainer()"><i class="bi bi-arrow-right"></i></a>
@@ -88,9 +88,3 @@
         </div>
     </div>
   </div>
-  <div class="card flex justify-content-center gap-2 ">
-    <p-toast></p-toast>
-    
-  
-   
-</div>

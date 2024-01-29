@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BooksService } from 'src/app/core/books.service';
 import { CartService } from 'src/app/core/cart.service';
-import { MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.css'],
-  providers: [MessageService],
 })
 export class WishListComponent implements OnInit {
   wishlistItemCount: any;
@@ -18,7 +17,7 @@ export class WishListComponent implements OnInit {
   currentProduct:any;
   discountedPrice:any;
   isProductInCart = false;
-  constructor(private messageService: MessageService,private activatedRoute: ActivatedRoute, private cartService:CartService,private booksService:BooksService) {}
+  constructor(private toster:ToastrService, private activatedRoute: ActivatedRoute, private cartService:CartService,private booksService:BooksService) {}
 
   ngOnInit(): void {
    
@@ -44,9 +43,7 @@ export class WishListComponent implements OnInit {
     this.discountedPrice = this.cartService.getDiscountedPrice(this.wishlistItems);
     this.isProductInCart = this.cartService.isProductInCart(this.wishlistItems);
   }
-  showTopCenter() {
-    this.messageService.add({ key: 'tc', severity: 'info', summary: 'Info', detail: 'Product Add To Cart Successfully' });
-  }
+
   updateWishlistCount() {
     this.wishlistItemCount = this.wishlistItems.length;
   }
@@ -56,7 +53,7 @@ export class WishListComponent implements OnInit {
     this.cartService.removeItemFromWishlist(item)
   }
   addToCart(book:any){   
-    this.showTopCenter() 
+    this.toster.success('Item Add to Cart')
     this.cartService.addProductToCart(book);
     this.isProductInCart = true;
    this.removeItemFromWishlist(book)

@@ -81,7 +81,7 @@ export class CartService {
   wishlistSubject = new Subject();
 
   constructor( ) {
-    const storedWishlist = localStorage.getItem('wishlists');
+    const storedWishlist = localStorage.getItem('wishlist');
     if (storedWishlist) {
       this.wishlist = JSON.parse(storedWishlist);
       this.wishlistSubject.next([...this.wishlist]);
@@ -194,6 +194,6 @@ if (removeConfirm){
   }
   private updateWishListAndLocalStorage() {
     this.wishlistSubject.next([...this.wishlist]);
-    localStorage.setItem('wishlists', JSON.stringify(this.wishlist));
+    localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
   }
 }

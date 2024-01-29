@@ -23,8 +23,9 @@ import { LoderComponent } from './loder/loder.component';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RatingModule } from 'primeng/rating';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -55,7 +56,8 @@ ReactiveFormsModule,
 ButtonModule,
 ToastModule,
 MessagesModule,
-RatingModule
+RatingModule,
+ConfirmDialogModule
   ],
   exports:[
     HeaderComponent,

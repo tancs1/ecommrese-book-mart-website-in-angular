@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import{FormGroup, FormControl, Validators} from '@angular/forms'
 import { AuthServiceService } from 'src/app/core/auth-service.service';
-import { MessageService } from 'primeng/api';
+
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [MessageService],
+  
 })
 export class LoginComponent {
   containerActive: boolean = false;
-  constructor( private messageService: MessageService,private router:Router,public authService:AuthServiceService){}
+  constructor( private toastr: ToastrService,private router:Router,public authService:AuthServiceService){}
   formValue: string = '';
 SignInFormData:any[]=[]
 SignUpFormData:any[]=[]
@@ -30,19 +31,33 @@ signInForm = new FormGroup({
 
 
 
-SignUp(){
-  debugger
-  this.SignUpFormData.push(this.SignUpForm.value)
-console.log(this.SignUpFormData);
-localStorage.setItem('SignUp',JSON.stringify(this.SignUpFormData))
+SignUp() {
+  debugger;
 
+  // Retrieve existing data from local storage
+  const storedSignUpData = localStorage.getItem('SignUp');
+  const existingSignUpData: any[] = storedSignUpData ? JSON.parse(storedSignUpData) : [];
+
+  // Generate a unique ID for the new user
+  const uniqueId = this.generateUniqueId();
+
+  // Push the new user data with the unique ID to the existing array
+  const newUser = { id: uniqueId, ...this.SignUpForm.value };
+  existingSignUpData.push(newUser);
+
+  // Store the updated data back to local storage
+  localStorage.setItem('SignUp', JSON.stringify(existingSignUpData));
+
+  console.log(existingSignUpData);
 }
-showInfo() {
-  this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login Successfully' });
+
+generateUniqueId() {
+  // This is a simple example; you may want to use a more robust method
+  // to generate unique IDs in a real-world application
+  return '_' + Math.random().toString(36).substr(2, 9);
 }
-showError() {
-  this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Credential not Correct SignUp and than Continue!' });
-}
+
+
 
 SignIn(){
   
@@ -72,26 +87,15 @@ let LoginPassword=this.signInForm.get('SignInPassword')?.value
       if (matchingUser) {
         this.loginuserDetails.push(matchingUser)
         localStorage.setItem('LoginUser',JSON.stringify( this.loginuserDetails))
-        this.showInfo()
-        const delayedPromise = new Promise((resolve) => {
-          setTimeout(() => {
-            resolve('Delayed action!');
-          }, 1000);
-        });
-    
-        // Handle the Promise
-        delayedPromise.then((result) => {
-          this.signInForm.reset()
-          this.authService.loginshow=false
-          this.router.navigate([''])
-          // Your code to be executed after the delay
-          console.log(result);
-        });
+    this.toastr.success('You Login Successfully')
+  
         console.log('user Match');
         // this.isSignIn=true
-      
+        this.signInForm.reset()
+          this.authService.loginshow=false
+          this.router.navigate([''])
       }else{
-      this.showError()
+     this.toastr.error('Login Detailes not match')
         localStorage.setItem('LoginUser',(''))
         // this.isSignIn=false
         console.log('user not match');

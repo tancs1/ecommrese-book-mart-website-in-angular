@@ -3,6 +3,7 @@ import { AuthServiceService } from 'src/app/core/auth-service.service';
 import { BooksService } from 'src/app/core/books.service';
 import { CartService } from 'src/app/core/cart.service';
 import { MessageService } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
   isSortMenuVisible: boolean = false;
   router: any;
 
-  constructor(private messageService: MessageService,private cartService: CartService, private bookService: BooksService ,public authService:AuthServiceService) {}
+  constructor(private toster:ToastrService, private messageService: MessageService,private cartService: CartService, private bookService: BooksService ,public authService:AuthServiceService) {}
 
   ngOnInit(): void {
     this.cartService.cartSubject.subscribe((cartItems: any) => {
@@ -117,13 +118,14 @@ this.authService.loginshow=true
 
 
 
-showBottomCenter() {
-  this.messageService.add({ key: 'tr', severity: 'success', summary: 'Success', detail: 'Logout Successfully' });
-}
+
 logout(){
   localStorage.removeItem('LoginUser')
-  // this.isAuthenticated = false;
-  this.showBottomCenter()
+  // localStorage.removeItem('cartlist')
+  // localStorage.removeItem('wishlist')
+  // localStorage.removeItem('cartItemCount')
+  // localStorage.removeItem('wishlistItemCount')
+this.toster.info('Your are Logout')
   this.router.navigate(['login']);
 }
 isLogIn(){

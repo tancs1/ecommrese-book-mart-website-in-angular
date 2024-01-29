@@ -10,8 +10,10 @@ import { FormsModule } from '@angular/forms';
 
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 registerLocaleData(en);
 
 
@@ -28,7 +30,7 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
- 
+    ToastrModule.forRoot(),
    
   ],
   providers: [

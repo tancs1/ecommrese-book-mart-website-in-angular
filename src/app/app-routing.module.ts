@@ -25,12 +25,12 @@ pathMatch:'full'
   {
     path:'cart',
     component:CartComponent,
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
  {
   path:'product-details',
   component:ProductDetailsComponent,
-  canActivate:[AuthGuard]
+  // canActivate:[AuthGuard]
 
  },{
   path:'login',
@@ -44,7 +44,7 @@ pathMatch:'full'
  {
   path:'wish-list',
   component:WishListComponent,
-  canActivate:[AuthGuard]
+  // canActivate:[AuthGuard]
  },{
   path:'contact',
   component:ContactComponent,
