@@ -1,0 +1,11 @@
+.about{
+    width: 100vw;
+    height: 40vh;
+}
+h1{
+    color: #192a56;
+    text-decoration: underline;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}

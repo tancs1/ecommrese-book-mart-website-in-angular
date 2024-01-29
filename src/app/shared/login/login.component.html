@@ -1,0 +1,96 @@
+
+
+<div class="container" [class.active]="containerActive">
+   
+    <div  id="container">
+        <div class="form-container sign-up">
+            <form [formGroup]="SignUpForm" (ngSubmit)="SignUp()" >
+                <h1>Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registeration</span>
+                <input type="text" placeholder="Name" formControlName="SignUpName"
+                [ngClass]="{'form-control': true, 'is-invalid': SignUpForm.get('SignUpName')?.invalid && SignUpForm.get('SignUpName')?.touched}">
+         <div *ngIf="SignUpForm.get('SignUpName')?.invalid && SignUpForm.get('SignUpName')?.touched" class="invalid-feedback">
+           <i class="bi bi-exclamation-circle"></i> Name is required.
+         </div>
+         
+         <input type="email" placeholder="Email" formControlName="SignUpEmail"
+                [ngClass]="{'form-control': true, 'is-invalid': SignUpForm.get('SignUpEmail')?.invalid && SignUpForm.get('SignUpEmail')?.touched}">
+         <div *ngIf="SignUpForm.get('SignUpEmail')?.invalid && SignUpForm.get('SignUpEmail')?.touched" class="invalid-feedback">
+           <i class="bi bi-exclamation-circle"></i> Email is required and must be a valid email address.
+         </div>
+         
+         <input type="password" placeholder="Password" formControlName="SignUpPassword"
+                [ngClass]="{'form-control': true, 'is-invalid': SignUpForm.get('SignUpPassword')?.invalid && SignUpForm.get('SignUpPassword')?.touched}">
+         <div *ngIf="SignUpForm.get('SignUpPassword')?.invalid && SignUpForm.get('SignUpPassword')?.touched" class="invalid-feedback">
+           <i class="bi bi-exclamation-circle"></i> Password is required and must be at least 6 characters.
+         </div>
+         
+         <button type="submit" (click)="toggleContainer()"  [disabled]="SignUpForm.invalid" >Sign In </button>
+   
+                <div class="d-flex justify-content-between w-100">
+                    <a class="home bg-body-tertiary p-1" title="Sign"  (click)="toggleContainer()"> <i class="bi bi-arrow-left"></i></a>
+                    <a class="home  " ></a>
+                  </div>
+            </form>
+        </div>
+   
+        <div class="form-container sign-in">
+             
+            <form [formGroup]="signInForm" (ngSubmit)="SignIn()" >
+                <h1>Sign In</h1>
+               
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email password</span>
+                <input type="email" placeholder="Email" class="form-control" required formControlName="SignInEmail"
+                [ngClass]="{'form-control': true, 'is-invalid': signInForm.get('SignInEmail')?.invalid && signInForm.get('SignInEmail')?.touched}">
+         <div *ngIf="signInForm.get('SignInEmail')?.invalid && signInForm.get('SignInEmail')?.touched" class="invalid-feedback">
+           <i class="bi bi-exclamation-circle"></i> Email is required and must be a valid email address.
+         </div>
+         
+         <input type="password" placeholder="Password" class="form-control" required formControlName="SignInPassword"
+                [ngClass]="{'form-control': true, 'is-invalid': signInForm.get('SignInPassword')?.invalid && signInForm.get('SignInPassword')?.touched}">
+         <div *ngIf="signInForm.get('SignInPassword')?.invalid && signInForm.get('SignInPassword')?.touched" class="invalid-feedback">
+           <i class="bi bi-exclamation-circle"></i> Password is required and must be at least 6 characters.
+         </div>
+                <a href="#">Forget Your Password?</a>
+               
+                <button type="submit" [disabled]="SignUpForm.invalid"  >Sign In</button>
+              <div class="d-flex justify-content-between w-100">
+                <a routerLink="" class="home bg-body-tertiary p-1" title="back Home"  (click)="backHome()"> <i class="bi bi-arrow-left"></i></a>
+                <a class="home  bg-body-tertiary signup p-1  " title="Signup" (click)="toggleContainer()"><i class="bi bi-arrow-right"></i></a>
+              </div>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login" (click)="toggleContainer() ">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register" (click)="toggleContainer()">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="card flex justify-content-center gap-2 ">
+    <p-toast></p-toast>
+    
+  
+   
+</div>

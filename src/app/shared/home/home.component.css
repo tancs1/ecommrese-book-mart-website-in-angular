@@ -1,0 +1,66 @@
+.home-main{
+width:100%;
+padding-left: 50px;
+
+    
+}
+.h1{
+    color: #192a56;
+    font-size: 50px;
+    text-decoration: underline;
+
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+ background-color: #192a56;
+ width: 50px;
+ border-radius: 10px;
+}
+.sr-only,.carousel-control-next{
+    color: #192a56;
+    font-weight: 700;
+    font-size: 15px;
+}
+.content{
+    width: 100%;
+}
+/* .home-content {
+    color: white;
+    position: absolute;
+    top: 13%;
+    left: 30%;
+    text-align: center;
+    line-height: 5px;
+    width: 100%;
+} */
+/* .side-pan{
+    width: 15%;
+} */
+
+h1{
+    font-size: 100px;
+    
+}
+
+/* .input-search{
+    width: 20% !important;
+} */
+.banner-img{
+    background-image: url('../../../assets/6845595.jpg');
+    width: 80vw;
+    height: 60vh;
+ background-repeat: no-repeat;
+    z-index: 22;
+    background-size:cover;
+   
+}
+.pagination-container{
+    width: 88vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*  */
+
+

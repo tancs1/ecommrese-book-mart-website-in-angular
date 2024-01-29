@@ -1,0 +1,52 @@
+<!-- <div *ngFor="let item of wishlistItems" class="book-card p-4 d-flex justify-content-start">
+   <p>{{item.title}} </p>
+  
+    <div class="right-container ms-5 d-flex flex-column">
+     ... Other content ... -->
+      <!-- <button class="btn-theme rounded d-flex align-items-center" (click)="removeItemFromWishlist(item)">
+        <i class="bi bi-trash"></i> Remove from Wishlist
+      </button>
+    </div>
+  </div>  -->
+<div class="container d-flex justify-content-center   mt-2 "> 
+  <div class="empty-cart d-flex flex-column align-items-center" *ngIf="!wishlistItems.length">
+    <h1 class="text-large text-theme mb-50">Oops</h1>
+    <img class="cart-empty-img" src="assets/cart-empty.svg">
+    <h1 class="mt-4">No items in your Wishlist</h1>
+    <h3>Add items to your Wish List</h3>
+    <button class="btn-theme w-25 mt-4" routerLink="/home">Go Home</button>
+</div>
+    <div *ngIf="wishlistItems.length"  class="">
+      <div *ngFor="let item of wishlistItems" class="wish-container " >
+        <div class="wishlist-item d-flex">
+            <img [src]="item.thumbnailUrl" class="book-thumbnail"
+                
+             alt="{{ item.title }} thumbnail">
+            <div class="wishlist-details">
+                <h3>{{ item.title }}</h3>
+                <h6><b>Description</b></h6>
+                <p>{{ item.shortDescription }}</p>
+                <p><b>Price: </b>{{ item.price | currency:'USD':'symbol':'1.2-2' }}</p>
+                <p><b>Discount:</b> {{item.discount}} Off </p>
+                <!-- Add more details as needed -->
+            </div>
+            <span title="Add to Cart" class=" add  " (click)="addToCart(item)" > <i class="bi bi-cart-plus"></i></span>
+         
+        </div>
+       
+        <span class="  position-absolute remove " title="Delete" (click)="removeItemFromWishlist(item)">
+          <i class="bi bi-x"></i>
+        </span>
+          
+          
+    </div>
+    </div>
+</div><div class="card flex justify-content-center gap-2">
+    
+  <p-toast position="top-right" key="tc"></p-toast>
+  
+
+  
+  
+</div>
+

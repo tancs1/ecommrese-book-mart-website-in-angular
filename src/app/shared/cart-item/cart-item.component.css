@@ -1,0 +1,53 @@
+.book-card{
+    min-height: 250px;
+    width: 900px;
+    border: 1px solid #ced6e0;
+    background-color:white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+   color: #192a56;
+  position: relative;
+}
+
+.book-card:hover{
+    box-shadow: 5px 5px 20px gray;
+}
+
+.book-thumbnail{
+    width: 150px;
+    border-radius: 5px;
+}
+.bi-trash{
+    color: red;
+    font-size:25px ;
+    position: absolute;
+right: 20px;
+bottom: 10px;
+}
+
+.btn-theme{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    color: #192a56;
+    outline: none;
+    background-color:gold;
+    border-color: rgb(255, 102, 0);
+}
+
+.disabled{
+    opacity: 0.4;
+}
+.counter{
+    position: absolute;
+    right: 70px;
+    width: 100px;
+bottom: 15px;
+}
+.action-icon{
+    width: 20px;
+}
+
+.w-fit{
+    width: fit-content;
+}

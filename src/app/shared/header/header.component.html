@@ -1,0 +1,127 @@
+
+<div class="container-fluid header-top" *ngIf="!authService.loginshow">
+   <div class="container-lg  ">
+<div class="row d-flex justify-content-between">
+    <div class="col-4">   <a routerLink="home"><img src="assets/maxresdefault-removebg-preview.png" class="main-logo " alt=""></a></div>
+    <div class=" d-flex col-8 justify-content-between p-3 px-5">
+      <div class="d-flex ">
+         <i class="bi bi-building-add"></i>
+       <div>
+         <span class="sp">Opening Hour</span><br>
+         <span class="">Mon-Fri : 8:00 - 9:00</span>
+       </div>
+      </div>
+      <div class="d-flex ">
+        <i class="bi bi-telephone-forward"></i>
+       <div>
+         <span class="sp">Call Us</span><br>
+         <span>+92-800-123-1234</span>
+       </div>
+      </div>
+      <div class="d-flex ">
+        <i class="bi bi-envelope-arrow-down"></i>
+       <div>
+         <span class="sp">
+             Email Us
+             </span><br>
+         <span>m.tanveercs@gmail.com</span>
+       </div>
+      </div>
+    </div>
+
+</div>
+   </div> 
+<div class="header d-flex align-items-center container  ">
+  
+    <ul class="d-flex header-menu ">
+     <li routerLink="home">
+         Home
+     </li>
+     <li routerLink="about">
+         About us
+     </li>
+     
+     <li class=" btn-theme " (click)="showSortMenu()">
+         Sort Books
+     </li>
+     <li (click)="showCategories()">
+      
+           Categories
+          
+  
+     </li>
+     <li (click)="showPriceFilter()">
+      
+       Price
+           
+     
+     </li>
+     <li   (click)="showDiscountFilters()">
+    
+          Discount
+          
+     </li>
+     <li routerLink="contact" >
+        Contact
+     </li>
+    </ul>
+  
+ 
+ <div class="input-group home-text  ">
+     
+     <input type="text" class="form-control input-search"   aria-label="searchText" aria-describedby="basic-addon1" [(ngModel)]="searchText" name="searchText" placeholder="search for books" (keyup)="searchBook(searchText)">
+ 
+ 
+ </div>
+     <div class="head-right-item ">
+         <div class="cart" routerLink="cart">
+             <img class="cart-image" src="assets/cart.svg" >
+             <div class="cart-items" *ngIf="cartItemCount"> {{cartItemCount}} </div>
+
+         </div>
+         <div class="wish-list" routerLink="wish-list">
+         
+            <img  class="cart-image" src="../../../assets/wishlist.png"  alt="">
+            <div class="wishlist-items" *ngIf="wishlistItemCount">{{wishlistItemCount}}</div>
+          </div>
+   
+         <button *ngIf="!isLogIn()"  routerLink="login" (click)='login()'   class="login">Login</button>
+         <button *ngIf="isLogIn()" (click)="logout()" class="login">Logout</button>
+     </div>
+ </div>
+ 
+ <div class="sidebar container-lg">
+    
+<!--  -->
+<div class="dropdown-containers" *ngIf="isSortMenuVisible">
+    <div class="dropdown-lists"  w-250>
+        <span class="dropdown-lists-item" *ngFor="let criterion of criteria" (click)="sortBook(criterion)">
+     <span>    {{criterion}}</span><br>
+        </span>
+    </div>
+    </div>
+<div class="dropdown-container" *ngIf="isCategoriesVisible">     
+    <div class="dropdown-list1 dropdown-list category-list row">
+        <span class="dropdown-list-item  cat-item col-12" *ngFor="let category of categories" (click)="filterBooksByCategory(category)">
+          <span>  {{category}}</span>
+        </span>
+    </div>
+</div>
+
+<div class="dropdown-container" *ngIf="isPriceFilterVisible">   
+    <div class="dropdown-list  dropdown-list2 price-filter-list row">
+        <span class="dropdown-list-item" *ngFor="let priceFilter of priceFilters" (click)="filterBookByPrice(priceFilter)">Upto {{priceFilter}}</span>
+    </div>
+</div>
+
+<div class="dropdown-container" *ngIf="isDiscountFiltersVisible">   
+    <div class="dropdown-list dropdown-list3  price-filter-list row">
+        <span class="dropdown-list-item" *ngFor="let discountFilter of discountFilters" (click)="filterBooksByDiscount(discountFilter)">More than {{discountFilter}}%</span>
+    </div>
+</div>
+
+ </div>
+</div>
+<div class="card " >
+    <p-toast position="top-right" key="tr" ></p-toast>
+</div>
