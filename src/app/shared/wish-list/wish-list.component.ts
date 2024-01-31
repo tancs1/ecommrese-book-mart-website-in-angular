@@ -20,29 +20,30 @@ export class WishListComponent implements OnInit {
   constructor(private toster:ToastrService, private activatedRoute: ActivatedRoute, private cartService:CartService,private booksService:BooksService) {}
 
   ngOnInit(): void {
-   
-    
-   
-    // Load wishlist data from local storage
     const storedWishlist = localStorage.getItem('wishlist');
     if (storedWishlist) {
       this.wishlistItems = JSON.parse(storedWishlist);
       this.updateWishlistCount();
+      this.filterWishlistItems();
     }
-
+  
     this.cartService.wishlistSubject.subscribe((wishlistItems: any) => {
-      // Update wishlist data
       this.wishlistItems = wishlistItems;
-      console.log(this.wishlistItems);
-      
       this.updateWishlistCount();
-
-      // Save wishlist data to local storage
+      this.filterWishlistItems();
+  
       localStorage.setItem('wishlist', JSON.stringify(this.wishlistItems));
+  
+      this.discountedPrice = this.cartService.getDiscountedPrice(this.wishlistItems);
+      this.isProductInCart = this.cartService.isProductInCart(this.wishlistItems);
     });
-    this.discountedPrice = this.cartService.getDiscountedPrice(this.wishlistItems);
-    this.isProductInCart = this.cartService.isProductInCart(this.wishlistItems);
   }
+  
+  filterWishlistItems() {
+    // Filter wishlist items based on the user ID
+    this.wishlistItems = this.cartService.getAllWishlistItem();
+  }
+  
 
   updateWishlistCount() {
     this.wishlistItemCount = this.wishlistItems.length;

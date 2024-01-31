@@ -19,39 +19,78 @@ export class HeaderComponent implements OnInit {
   isSortMenuVisible: boolean = false;
   router: any;
 
-  constructor(private toster:ToastrService, private messageService: MessageService,private cartService: CartService, private bookService: BooksService ,public authService:AuthServiceService) {}
+  constructor(private toster:ToastrService, private messageService: MessageService,public cartService: CartService, private bookService: BooksService ,public authService:AuthServiceService) {}
+
+  // ngOnInit(): void {
+  //   this.cartService.cartSubject.subscribe((cartItems: any) => {
+  //   const storedCartCount = localStorage.getItem('cartItemCount');
+
+  //   // Parse the stored count if it exists
+  //   if (storedCartCount) {
+  //     this.cartItemCount = JSON.parse(storedCartCount);
+  //   }
+  //    this.cartItemCount = cartItems.length;
+  //     localStorage.setItem('cartItemCount', JSON.stringify( this.cartItemCount));
+  //   });
+ 
+
+  //   // Subscribe to wishlist changes
+  //   this.cartService.wishlistSubject.subscribe((wishlistItems: any) => {
+  //     // Update wishlist count based on the length of wishlist items
+  //     this.wishlistItemCount = wishlistItems.length;
+
+  //     // Save updated wishlist count to local storage
+  //     localStorage.setItem('wishlistItemCount', JSON.stringify(this.wishlistItemCount));
+  //   });
+  //    // Get wishlist count from local storage on component initialization
+  //    const storedWishlistCount = localStorage.getItem('wishlistItemCount');
+
+  //    // Parse the stored count if it exists
+  //    if (storedWishlistCount) {
+  //      this.wishlistItemCount = JSON.parse(storedWishlistCount);
+  //    }
+ 
+   
+  // }
 
   ngOnInit(): void {
+    // Subscribe to cart changes
     this.cartService.cartSubject.subscribe((cartItems: any) => {
-    const storedCartCount = localStorage.getItem('cartItemCount');
-
-    // Parse the stored count if it exists
-    if (storedCartCount) {
-      this.cartItemCount = JSON.parse(storedCartCount);
-    }
-     this.cartItemCount = cartItems.length;
-      localStorage.setItem('cartItemCount', JSON.stringify( this.cartItemCount));
+     
     });
- 
 
     // Subscribe to wishlist changes
     this.cartService.wishlistSubject.subscribe((wishlistItems: any) => {
-      // Update wishlist count based on the length of wishlist items
-      this.wishlistItemCount = wishlistItems.length;
-
-      // Save updated wishlist count to local storage
-      localStorage.setItem('wishlistItemCount', JSON.stringify(this.wishlistItemCount));
+     
     });
-     // Get wishlist count from local storage on component initialization
-     const storedWishlistCount = localStorage.getItem('wishlistItemCount');
+// create cart count functionality to acces cart count
+    // Get cart count from local storage on component initialization
+    const storedCartCount = localStorage.getItem('cartcount');
+    if (storedCartCount) {
+      this.cartItemCount = JSON.parse(storedCartCount);
+      this.updateCartCount(this.cartItemCount);
+    }
 
-     // Parse the stored count if it exists
-     if (storedWishlistCount) {
-       this.wishlistItemCount = JSON.parse(storedWishlistCount);
-     }
- 
-   
+    // Get wishlist count from local storage on component initialization
+    const storedWishlistCount = localStorage.getItem('wishlistcount');
+    if (storedWishlistCount) {
+      this.wishlistItemCount = JSON.parse(storedWishlistCount);
+      this.updateWishlistCount(this.wishlistItemCount);
+    }
   }
+
+ 
+  private updateCartCount(cartItems: any) {
+   
+    localStorage.setItem('cartcount', JSON.stringify(cartItems));
+  }
+
+  private updateWishlistCount(wishlistItems: any) {
+  
+    localStorage.setItem('wishlistcount', JSON.stringify(wishlistItems));
+  }
+
+  // ... (rest of your existing code)
 
   sortBook(criterion: any) {
     this.bookService.sortBook(criterion);

@@ -16,7 +16,7 @@ export class LoginComponent {
   formValue: string = '';
 SignInFormData:any[]=[]
 SignUpFormData:any[]=[]
- isSignIn:boolean=false
+//  isSignIn:boolean=false
 loginuserDetails:[]=[]
 SignUpForm = new FormGroup({
   SignUpName: new FormControl('', []),
@@ -90,7 +90,7 @@ let LoginPassword=this.signInForm.get('SignInPassword')?.value
     this.toastr.success('You Login Successfully')
   
         console.log('user Match');
-        // this.isSignIn=true
+        this.authService.islogin=true
         this.signInForm.reset()
           this.authService.loginshow=false
           this.router.navigate([''])

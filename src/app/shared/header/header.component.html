@@ -76,13 +76,13 @@
      <div class="head-right-item ">
          <div class="cart" routerLink="cart">
              <img class="cart-image" src="assets/cart.svg" >
-             <div class="cart-items" *ngIf="cartItemCount"> {{cartItemCount}} </div>
+             <div class="cart-items" *ngIf="cartService.cartcount"> {{cartService.cartcount}} </div>
 
          </div>
          <div class="wish-list" routerLink="wish-list">
          
             <img  class="cart-image" src="../../../assets/wishlist.png"  alt="">
-            <div class="wishlist-items" *ngIf="wishlistItemCount">{{wishlistItemCount}}</div>
+            <div class="wishlist-items" *ngIf="cartService.wishlistcount">{{cartService.wishlistcount}}</div>
           </div>
    
          <button *ngIf="!isLogIn()"  routerLink="login" (click)='login()'   class="login">Login</button>
