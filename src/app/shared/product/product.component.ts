@@ -26,6 +26,13 @@ export class ProductComponent implements OnInit {
  ngOnInit(): void {
   this.id = {'isbn': this.book.isbn};
   this.isProductInCart = this.cartservice.isProductInCart(this.book);
+ 
+    this.id = {'isbn': this.book.isbn};
+    this.isProductInCart = this.cartservice.isProductInCart(this.book);
+    this.isProductInWishlist = this.cartservice.isProductInWishlist(this.book);
+  
+  
+
 }
 
 

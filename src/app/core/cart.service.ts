@@ -241,15 +241,35 @@ localStorage.setItem('cartcount',this.cartcount)
   getDiscountedPrice(currentItem:any){
     return currentItem.price-(currentItem.discount)/100*currentItem.price;
   }
-  isProductInCart(product:any){
-    let book = this.cartProduct.find((p)=>{
-      return p.isbn === product.isbn
-    })
-    if(book){
-      return true
+  isProductInCart(product: any): boolean {
+    // Check if the user is logged in
+    const storedLoginUser = localStorage.getItem('LoginUser');
+    const loginUser: any = storedLoginUser ? JSON.parse(storedLoginUser) : null;
+  
+    if (loginUser && loginUser.length > 0) {
+      const userId = loginUser[0].id;
+      // Check if the product with the same ISBN is in the cart for the current user
+      const isProductInUserCart = this.cartProduct.some((p) => p.userId === userId && p.isbn === product.isbn);
+      return isProductInUserCart;
     }
-    return false
+  
+    return false;
   }
+  isProductInWishlist(product: any): boolean {
+    // Check if the user is logged in
+    const storedLoginUser = localStorage.getItem('LoginUser');
+    const loginUser: any = storedLoginUser ? JSON.parse(storedLoginUser) : null;
+  
+    if (loginUser && loginUser.length > 0) {
+      const userId = loginUser[0].id;
+      // Check if the product with the same ISBN is in the wishlist for the current user
+      const isProductInUserWishlist = this.wishlist.some((p) => p.userId === userId && p.isbn === product.isbn);
+      return isProductInUserWishlist;
+    }
+  
+    return false;
+  }
+  
   private updateCartAndLocalStorage() {
     this.cartSubject.next([...this.cartProduct]);
     localStorage.setItem('cartlist', JSON.stringify(this.cartProduct));
