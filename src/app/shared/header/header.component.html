@@ -84,9 +84,21 @@
             <img  class="cart-image" src="../../../assets/wishlist.png"  alt="">
             <div class="wishlist-items" *ngIf="cartService.wishlistcount">{{cartService.wishlistcount}}</div>
           </div>
-   
-         <button *ngIf="!isLogIn()"  routerLink="login" (click)='login()'   class="login">Login</button>
-         <button *ngIf="isLogIn()" (click)="logout()" class="login">Logout</button>
+          <!-- <div class="dropdown">
+            <button class=" dropdown-toggle user-dropdown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-person-circle"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <button class="dropdown-item" type="button">User Profile</button>
+              <button class="dropdown-item" type="button">My order</button>
+
+              
+ 
+            </div>
+          </div> -->
+          <button *ngIf="!isLogIn()"  routerLink="login" (click)='login()'  class="login">Login</button>
+          <button *ngIf="isLogIn()" (click)="logout()" class="login">Logout</button> 
+<!--    
      </div>
  </div>
  

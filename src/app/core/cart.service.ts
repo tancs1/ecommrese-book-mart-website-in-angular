@@ -38,6 +38,7 @@ export class CartService  {
     let cartitemlists
     let count
     // Check if the user is logged in
+    
     const storedLoginUser = localStorage.getItem('LoginUser');
     const loginUser: any = storedLoginUser ? JSON.parse(storedLoginUser) : null;
   
@@ -272,6 +273,7 @@ localStorage.setItem('cartcount',this.cartcount)
   
   private updateCartAndLocalStorage() {
     this.cartSubject.next([...this.cartProduct]);
+    
     localStorage.setItem('cartlist', JSON.stringify(this.cartProduct));
   }
 

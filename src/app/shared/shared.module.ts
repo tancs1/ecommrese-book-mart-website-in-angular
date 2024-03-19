@@ -25,6 +25,8 @@ import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RatingModule } from 'primeng/rating';
+import { UserPrfileComponent } from './user-prfile/user-prfile.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { RatingModule } from 'primeng/rating';
         ContactComponent,
         CheckOutComponent,
         LoderComponent,
+        UserPrfileComponent,
+        MyOrderComponent,
   
   ],
   imports: [
